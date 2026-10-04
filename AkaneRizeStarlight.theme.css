@@ -16,18 +16,18 @@
   /* Focal point: "center", "left center", "70% 30%", ... */
   --ars-bg-position: 60% center;
   --ars-bg-size: cover;
-  --ars-bg-overlay: rgba(6, 12, 34, 0.30); /* tint over the image */
+  --ars-bg-overlay: rgba(6, 12, 34, 0.12); /* tint over the image */
   --ars-bg-blur: 3px;                     /* e.g. 4px to soften a low-res image */
 
   /* Surface translucency (0 = transparent, 1 = solid) */
-  --ars-surface-1: rgba(8, 16, 42, 0.36); /* main chat */
-  --ars-surface-2: rgba(8, 16, 42, 0.42); /* sidebars, channel list */
-  --ars-surface-3: rgba(5, 11, 32, 0.52);   /* server list, title bar, popouts */
+  --ars-surface-1: rgba(30, 44, 96, 0.26); /* main chat */
+  --ars-surface-2: rgba(30, 44, 96, 0.30); /* sidebars, channel list */
+  --ars-surface-3: rgba(24, 36, 84, 0.36);   /* server list, title bar, popouts */
   --ars-input: rgba(255, 255, 255, 0.10);
   --ars-accent: #d8343f; /* Rize crimson */
   --ars-gold: #f2c26b;
   --ars-text: #f1eee8;
-  --ars-text-muted: #b4b9cf;
+  --ars-text-muted: #cfd4e8;
 }
 
 /* ========= BACKGROUND ========= */
@@ -240,11 +240,6 @@ html body [class*="titleBar"] {
   background-image: none !important;
 }
 
-html body [class*="members"] *,
-html body [class*="sidebar"] *,
-html body [class*="channels_"] * {
-  color: var(--ars-text);
-}
 html body [class*="members"] [class*="activity"],
 html body [class*="members"] [class*="subText"] {
   color: var(--ars-text-muted) !important;
@@ -402,7 +397,7 @@ html body [class*="sidebar_"],
 html body [class*="membersWrap_"],
 html body [class*="guilds_"],
 html body [class*="privateChannels"] {
-  background-color: rgba(6, 13, 36, 0.44) !important;
+  background-color: rgba(30, 44, 96, 0.30) !important;
 }
 
 /* ========= USER PANEL FIX (profile / mic / settings gear) ========= */
@@ -419,7 +414,7 @@ html body [class*="panels_"] button {
 }
 html body [class*="panels_"] {
   border-radius: 14px !important;
-  background-color: rgba(6, 13, 36, 0.44) !important;
+  background-color: rgba(30, 44, 96, 0.30) !important;
 }
 html body [class*="panels_"] button,
 html body [class*="panels_"] [class*="avatarWrapper"] {
@@ -526,4 +521,196 @@ html body [class*="newMessagesBar"] {
 html body [class*="newMessagesBar"] span {
   background-color: #ff4458 !important;
   color: #fff !important;
+}
+
+/* ========= MENTION WHILE TYPING ========= */
+html body [class*="slateTextArea"] .mention,
+html body [class*="textArea"] .mention,
+html body [class*="channelTextArea"] .mention,
+html body [class*="channelTextArea"] [class*="mention"] {
+  background-color: rgba(255, 90, 105, 0.55) !important;
+  color: #fff !important;
+  border-radius: 4px;
+  text-shadow: none !important;
+}
+html body [class*="autocomplete_"],
+html body [class*="autocomplete"][class*="Inner"] {
+  background-color: rgba(30, 40, 80, 0.88) !important;
+  -webkit-backdrop-filter: blur(var(--ars-glass-blur)) saturate(160%) !important;
+  backdrop-filter: blur(var(--ars-glass-blur)) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 14px !important;
+}
+html body [class*="autocomplete_"] [class*="selectorSelected"],
+html body [class*="autocomplete_"] [class*="selected_"] {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  border-radius: 8px;
+}
+html body [class*="autocomplete_"] *,
+html body [class*="autocomplete_"] [class*="text_"],
+html body [class*="autocomplete_"] [class*="label"] {
+  color: #fff !important;
+}
+
+/* ========= BRIGHTER OVERALL ========= */
+html body [class*="theme-"] {
+  --interactive-normal: #e4e8f6 !important;
+  --interactive-muted: #9aa3c4 !important;
+  --channels-default: #d6dbee !important;
+  --text-muted: #cfd4e8 !important;
+}
+html body svg {
+  opacity: 1;
+}
+html body [class*="toolbar"] svg,
+html body [class*="channelTextArea"] svg,
+html body [class*="panels_"] svg,
+html body [class*="actionButtons"] svg,
+html body [class*="icon_"] {
+  color: #eef1ff !important;
+}
+
+/* Voice / call / screen share area */
+html body [class*="voiceCallWrapper"],
+html body [class*="callContainer"],
+html body [class*="videoControls"],
+html body [class*="wrapper_"][class*="call"],
+html body [class*="controls_"],
+html body [class*="tile_"],
+html body [class*="callAvatarWrapper"] {
+  background-color: rgba(40, 56, 112, 0.35) !important;
+  background-image: none !important;
+}
+html body [class*="controlButton"],
+html body [class*="button_"][class*="lookFilled"][class*="colorPrimary"],
+html body [class*="controls_"] button {
+  background-color: rgba(255, 255, 255, 0.16) !important;
+  color: #fff !important;
+  border-radius: 999px;
+}
+html body [class*="controls_"] button:hover {
+  background-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+/* Popouts, menus and dropdowns a bit lighter */
+html body [class*="menu_"],
+html body [class*="popout_"],
+html body [class*="autocomplete_"] {
+  background-color: rgba(44, 60, 120, 0.82) !important;
+}
+
+/* ========= SOFT BOTTOM FINISH ========= */
+/* Server list: fade out at the bottom instead of a hard cut */
+html body [class*="guilds_"] [class*="scroller"],
+html body [class*="guilds_"] nav {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 36px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 36px), transparent 100%);
+  padding-bottom: 24px;
+}
+
+/* Sidebar bottom: round the corners and give breathing room */
+html body [class*="sidebar_"] {
+  border-radius: var(--ars-radius) !important;
+  overflow: hidden;
+  padding-bottom: 6px;
+}
+
+/* Voice connected / screen share block */
+html body [class*="panels_"] {
+  margin: 0 8px 8px !important;
+  padding: 4px 0 !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)) !important;
+}
+html body [class*="panels_"] > [class*="wrapper_"],
+html body [class*="panels_"] > [class*="container_"],
+html body [class*="panels_"] [class*="rtcConnectionStatus"],
+html body [class*="panels_"] [class*="actionButtons"] {
+  border-radius: 14px !important;
+  background: transparent !important;
+}
+/* Voice status text: readable soft green instead of dark green */
+html body [class*="rtcConnectionStatus"],
+html body [class*="rtcConnectionStatus"] *,
+html body [class*="statusConnected"] {
+  color: #8df0b4 !important;
+}
+
+/* Round action buttons softly */
+html body [class*="panels_"] [class*="actionButtons"] button,
+html body [class*="panels_"] [class*="actionButtons"] [class*="button_"] {
+  border-radius: 12px !important;
+  transition: background-color 0.15s ease;
+}
+
+/* No divider lines inside the bottom panel */
+html body [class*="panels_"] *,
+html body [class*="panels_"] *::before,
+html body [class*="panels_"] *::after {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+html body [class*="panels_"] hr,
+html body [class*="panels_"] [class*="divider"],
+html body [class*="panels_"] [class*="separator"] {
+  display: none !important;
+}
+html body [class*="panels_"] {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* ========= MEMBER LIST ROLES FIX ========= */
+html body [class*="membersWrap_"] [class*="members_"],
+html body [class*="membersWrap_"] [class*="content_"],
+html body [class*="membersWrap_"] [class*="scroller"],
+html body [class*="membersWrap_"] [class*="list_"] {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+html body [class*="membersGroup_"],
+html body [class*="membersGroup_"] * {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  height: auto;
+  text-shadow: none !important;
+}
+html body [class*="membersGroup_"] {
+  color: var(--ars-text-muted);
+  padding: 18px 8px 4px 16px !important;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+html body [class*="membersWrap_"] [class*="member_"] {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+  margin: 1px 6px !important;
+}
+html body [class*="membersWrap_"] [class*="member_"] [class*="layout"],
+html body [class*="membersWrap_"] [class*="member_"] [class*="content_"] {
+  background: transparent !important;
+}
+html body [class*="membersWrap_"] [class*="member_"] [class*="name_"] {
+  text-shadow: none !important;
+}
+
+/* ========= KEEP ROLE COLOURS ========= */
+/* Role-coloured names use an inline style; never override it. */
+html body [class*="membersWrap_"] [class*="name_"],
+html body [class*="membersWrap_"] [class*="name_"] span {
+  color: inherit;
+}
+html body [class*="membersWrap_"] [class*="member_"] {
+  color: var(--ars-text);
 }
