@@ -16,22 +16,23 @@
   /* Focal point: "center", "left center", "70% 30%", ... */
   --ars-bg-position: 60% center;
   --ars-bg-size: cover;
-  --ars-bg-overlay: rgba(8, 8, 20, 0.30); /* tint over the image */
+  --ars-bg-overlay: rgba(6, 12, 34, 0.30); /* tint over the image */
   --ars-bg-blur: 3px;                     /* e.g. 4px to soften a low-res image */
 
   /* Surface translucency (0 = transparent, 1 = solid) */
-  --ars-surface-1: rgba(20, 22, 40, 0.34); /* main chat */
-  --ars-surface-2: rgba(20, 22, 40, 0.38); /* sidebars, channel list */
-  --ars-surface-3: rgba(14, 16, 32, 0.46);   /* server list, title bar, popouts */
+  --ars-surface-1: rgba(8, 16, 42, 0.36); /* main chat */
+  --ars-surface-2: rgba(8, 16, 42, 0.42); /* sidebars, channel list */
+  --ars-surface-3: rgba(5, 11, 32, 0.52);   /* server list, title bar, popouts */
   --ars-input: rgba(255, 255, 255, 0.10);
-  --ars-accent: #e0507a;
-  --ars-text: #ecebf5;
-  --ars-text-muted: #a9a8bd;
+  --ars-accent: #d8343f; /* Rize crimson */
+  --ars-gold: #f2c26b;
+  --ars-text: #f1eee8;
+  --ars-text-muted: #b4b9cf;
 }
 
 /* ========= BACKGROUND ========= */
 html {
-  background: #0a0a14 !important;
+  background: #060c22 !important;
 }
 body {
   background: transparent !important;
@@ -104,7 +105,7 @@ body::before {
 .bd-description {
   color: var(--ars-text-muted);
 }
-a { color: #8ab4ff; }
+a { color: var(--ars-gold); }
 
 /* ========= SURFACES ========= */
 [class*="sidebar_"],
@@ -347,7 +348,7 @@ html body [class*="panels_"] {
 html body [class*="menu_"],
 html body [class*="popout_"],
 html body [class*="modal"] [class*="root_"] {
-  background-color: rgba(24, 26, 46, 0.55) !important;
+  background-color: rgba(8, 16, 42, 0.62) !important;
   border-radius: var(--ars-radius) !important;
 }
 
@@ -386,7 +387,7 @@ html body #app-mount > div > div > div > div > div {
 html body [class*="chat_"],
 html body [class*="chatContent"],
 html body [class*="content_"] > [class*="chat"] {
-  background: linear-gradient(rgba(8, 8, 20, 0.22), rgba(8, 8, 20, 0.34)) !important;
+  background: linear-gradient(rgba(5, 11, 32, 0.22), rgba(5, 11, 32, 0.36)) !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
   border: none !important;
@@ -411,7 +412,7 @@ html body [class*="sidebar_"],
 html body [class*="membersWrap_"],
 html body [class*="guilds_"],
 html body [class*="privateChannels"] {
-  background-color: rgba(10, 10, 24, 0.40) !important;
+  background-color: rgba(6, 13, 36, 0.44) !important;
 }
 
 /* ========= USER PANEL FIX (profile / mic / settings gear) ========= */
@@ -428,7 +429,7 @@ html body [class*="panels_"] button {
 }
 html body [class*="panels_"] {
   border-radius: 14px !important;
-  background-color: rgba(10, 10, 24, 0.40) !important;
+  background-color: rgba(6, 13, 36, 0.44) !important;
 }
 html body [class*="panels_"] button,
 html body [class*="panels_"] [class*="avatarWrapper"] {
@@ -437,4 +438,83 @@ html body [class*="panels_"] [class*="avatarWrapper"] {
 }
 html body [class*="panels_"] button:hover {
   background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* ========= MENTIONS ========= */
+html body .mention,
+html body [class*="mention"][class*="wrapper"],
+html body [class*="mention_"] {
+  background: rgba(216, 52, 63, 0.38) !important;
+  color: #ffffff !important;
+  border-radius: 6px;
+  font-weight: 500;
+  text-shadow: none !important;
+}
+html body .mention:hover,
+html body [class*="mention_"]:hover {
+  background: rgba(216, 52, 63, 0.65) !important;
+  color: #fff !important;
+}
+/* Message that mentions you */
+html body [class*="mentioned_"] {
+  background-color: rgba(242, 194, 107, 0.14) !important;
+}
+html body [class*="mentioned_"]::before {
+  background-color: var(--ars-gold) !important;
+}
+
+/* ========= RIZE PALETTE ACCENTS ========= */
+html body [class*="selected_"],
+html body [class*="modeSelected"] {
+  background: rgba(216, 52, 63, 0.28) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 220, 160, 0.35) !important;
+}
+
+/* ========= MENTION FIX (single subtle layer) ========= */
+html body [class*="theme-"] {
+  --background-mentioned: transparent !important;
+  --background-mentioned-hover: rgba(255, 255, 255, 0.04) !important;
+  --background-message-mentioned: transparent !important;
+  --background-message-mentioned-hover: rgba(255, 255, 255, 0.04) !important;
+}
+html body [class*="mentioned_"],
+html body [class*="mentioned_"] * {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+html body li[class*="mentioned_"],
+html body [class*="message_"][class*="mentioned_"] {
+  background-image: linear-gradient(90deg, rgba(242, 194, 107, 0.10), rgba(242, 194, 107, 0)) !important;
+  border-radius: 8px;
+}
+html body [class*="mentioned_"]::before {
+  background-color: var(--ars-gold) !important;
+  border-radius: 4px;
+}
+html body .mention,
+html body [class*="mention_"] {
+  background-color: rgba(216, 52, 63, 0.32) !important;
+  color: #fff !important;
+  border-radius: 4px;
+  padding: 0 2px;
+}
+
+/* ========= MESSAGE HEADER STRIPE FIX ========= */
+html body [class*="message_"] [class*="header_"],
+html body [class*="message_"] [class*="header"],
+html body [class*="groupStart"],
+html body [class*="cozyMessage"],
+html body [class*="contents_"],
+html body [class*="messageContent"],
+html body [class*="repliedMessage"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+html body [class*="message_"]:hover,
+html body [class*="message_"]:hover [class*="cozyMessage"] {
+  background-color: rgba(255, 255, 255, 0.04) !important;
 }
