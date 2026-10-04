@@ -415,6 +415,50 @@ html body [class*="sidebar_"] [class*="containerDefault"] [class*="modeUnread-"]
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
 }
 
+/* Unread channel names/icons should remain prominent even without hover. */
+html body [class*="sidebar_"] [class*="modeUnread-"],
+html body [class*="sidebar_"] [class*="modeUnread-"] [class*="name"],
+html body [class*="sidebar_"] [class*="modeUnread-"] [class*="icon"],
+html body [class*="sidebar_"] [class*="modeUnread-"] svg {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+}
+
+html body [class*="sidebar_"] [class*="modeUnread-"] [class*="unread"],
+html body [class*="sidebar_"] [class*="modeUnread-"]::before {
+  opacity: 1 !important;
+}
+
+/* Discord's current unread channel classes do not always include a hyphen. */
+html body [class*="sidebar_"] [class*="modeUnread"],
+html body [class*="sidebar_"] [class*="modeUnread"] *,
+html body [class*="sidebar_"] [class*="unreadImportant"],
+html body [class*="sidebar_"] [class*="unreadImportant"] * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 3px rgba(8, 12, 30, 0.85) !important;
+}
+
+html body [class*="sidebar_"] [class*="modeUnread"],
+html body [class*="sidebar_"] [class*="unreadImportant"] {
+  background-color: rgba(219, 222, 255, 0.12) !important;
+}
+
+html body [class*="sidebar_"] [class*="modeUnread"] {
+  border-radius: 11px !important;
+  margin-inline: 4px !important;
+  overflow: hidden;
+  transition: background-color 160ms ease, border-radius 160ms ease !important;
+}
+
+html body [class*="sidebar_"] [class*="modeUnread"]::before {
+  border-radius: 0 4px 4px 0 !important;
+}
+
 /* Keep text crisp over the glass */
 html body [class*="chat_"],
 html body [class*="sidebar_"],
