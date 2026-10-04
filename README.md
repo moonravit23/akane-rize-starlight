@@ -2,7 +2,7 @@
 
 A dependency-free [BetterDiscord](https://betterdiscord.app/) theme: a full-screen background image with dark, translucent Discord surfaces so text stays readable.
 
-> **The image is not included.** The theme ships with a placeholder URL (`https://example.com/REPLACE_WITH_YOUR_IMAGE.png`). Until you replace it, the background will be empty/dark.
+> The theme loads its default background from `assets/background.png` in this repository (via raw.githubusercontent.com), so it works out of the box. You can swap in your own image, see below.
 
 ## Install
 
@@ -52,11 +52,11 @@ Discord periodically changes its class names. The theme matches on partial class
 ## Publishing to GitHub
 
 1. Replace `moonravit23`, `YOUR_DISCORD_USER_ID`, `moonravit23` in the theme header and this README.
-2. Do **not** commit the image unless you have the right to redistribute it.
+2. Only keep `assets/background.png` if you have the right to redistribute it.
 3. Commit and push.
 
 ## License
 
 The theme code (CSS and README) is released under the MIT License, see [LICENSE](./LICENSE).
 
-**Artwork is not covered by this license.** Akane Rize artwork belongs to its respective creator/rights holder. This repository does not include or license any image. You must have the rights to use, and especially to redistribute, any image you configure or add to a fork. Do not publish artwork you do not have permission to share.
+**Artwork is not covered by this license.** Akane Rize artwork belongs to its respective creator/rights holder. The bundled `assets/background.png` is included with the repository owner's confirmation that they have the right to redistribute it; it is not covered by the MIT license. If you fork this repo or use your own image, you must have the rights to use, and especially to redistribute, any image you configure or add to a fork. Do not publish artwork you do not have permission to share.

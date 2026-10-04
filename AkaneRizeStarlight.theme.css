@@ -9,9 +9,9 @@
 
 /* ========= USER SETTINGS (edit these) ========= */
 :root {
-  /* TODO: Replace with a URL you have the right to use. See README.
+  /* Default: the bundled image in this repo. Replace with your own URL to change it.
      Must be a direct https:// image link (or a data: URI). */
-  --ars-bg-image: url("https://example.com/REPLACE_WITH_YOUR_IMAGE.png");
+  --ars-bg-image: url("https://raw.githubusercontent.com/moonravit23/akane-rize-starlight/main/assets/background.png");
 
   /* Focal point: "center", "left center", "70% 30%", ... */
   --ars-bg-position: 60% center;
@@ -235,8 +235,7 @@ html body [class*="panels_"] {
 
 html body [class*="guilds_"],
 html body [class*="wrapper_"][class*="guilds"],
-html body [class*="titleBar"],
-html body [class*="bar_"] {
+html body [class*="titleBar"] {
   background-color: var(--ars-surface-3) !important;
   background-image: none !important;
 }
@@ -280,15 +279,6 @@ html body [class*="theme-"] {
 html body .custom-theme-background,
 html body [class*="customTheme"],
 html body [class*="gradientTheme"] {
-  background: none !important;
-}
-html body [class*="sidebar"]::before,
-html body [class*="sidebar"]::after,
-html body [class*="members"]::before,
-html body [class*="members"]::after,
-html body [class*="guilds_"]::before,
-html body [class*="guilds_"]::after,
-html body [class*="container_"]::before {
   background: none !important;
 }
 html body [class*="sidebar"],
@@ -517,4 +507,29 @@ html body [class*="repliedMessage"] {
 html body [class*="message_"]:hover,
 html body [class*="message_"]:hover [class*="cozyMessage"] {
   background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* ========= UNREAD INDICATORS (keep visible) ========= */
+html body [class*="unread_"],
+html body [class*="item_"] > [class*="unread"],
+html body [class*="pill"] > span,
+html body [class*="pill_"] > span {
+  background-color: #fff !important;
+  opacity: 1 !important;
+}
+html body [class*="newMessagesBar"],
+html body [class*="isUnread"] {
+  background-color: transparent !important;
+  color: #ff4458 !important;
+  border-color: #ff4458 !important;
+}
+html body [class*="newMessagesBar"] [class*="span"],
+html body [class*="newMessagesBar"] span {
+  background-color: #ff4458 !important;
+  color: #fff !important;
+}
+html body [class*="numberBadge"],
+html body [class*="lowerBadge"] [class*="numberBadge"] {
+  background-color: #ff4458 !important;
+  color: #fff !important;
 }
