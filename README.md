@@ -49,11 +49,16 @@ Responsive behaviour: the image always covers the window; the focal point shifts
 
 Discord periodically changes its class names. The theme matches on partial class names (`[class*="sidebar_"]`) to remain resilient, but some surfaces may need tweaks after Discord updates. Issues and PRs are welcome.
 
-## Publishing to GitHub
+## Submit to the BetterDiscord theme gallery
 
-1. Replace `moonravit23`, `YOUR_DISCORD_USER_ID`, `moonravit23` in the theme header and this README.
-2. Only keep `assets/background.png` if you have the right to redistribute it.
-3. Commit and push.
+Publishing this repository on GitHub does not automatically add the theme to BetterDiscord's searchable gallery.
+
+1. Keep this repository public and keep `AkaneRizeStarlight.theme.css` at its current path so BetterDiscord can verify and track updates.
+2. Sign in at [betterdiscord.app/themes](https://betterdiscord.app/themes) and connect your Discord account.
+3. Use **Submit a theme** and submit this public repository/theme file for verification and review.
+4. The theme becomes searchable in BetterDiscord only after it passes review and is approved. Updating the theme CSS later may trigger another review.
+
+Review the [BetterDiscord theme guidelines](https://docs.betterdiscord.app/themes/publishing/guidelines) before submitting. The gallery expects themes to be substantially authored by their creator, so make sure you understand and can stand behind the CSS implementation before submitting it under your name.
 
 ## License
 
