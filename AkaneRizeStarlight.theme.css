@@ -1,0 +1,440 @@
+﻿/**
+ * @name Akane Rize Starlight
+ * @author moonravit23
+ * @version 1.0.0
+ * @description Full-screen Akane Rize background with dark translucent Discord surfaces for readability.
+ * @source https://github.com/moonravit23/akane-rize-starlight
+ * @website https://github.com/moonravit23/akane-rize-starlight
+ */
+
+/* ========= USER SETTINGS (edit these) ========= */
+:root {
+  /* TODO: Replace with a URL you have the right to use. See README.
+     Must be a direct https:// image link (or a data: URI). */
+  --ars-bg-image: url("https://example.com/REPLACE_WITH_YOUR_IMAGE.png");
+
+  /* Focal point: "center", "left center", "70% 30%", ... */
+  --ars-bg-position: 60% center;
+  --ars-bg-size: cover;
+  --ars-bg-overlay: rgba(8, 8, 20, 0.30); /* tint over the image */
+  --ars-bg-blur: 3px;                     /* e.g. 4px to soften a low-res image */
+
+  /* Surface translucency (0 = transparent, 1 = solid) */
+  --ars-surface-1: rgba(20, 22, 40, 0.34); /* main chat */
+  --ars-surface-2: rgba(20, 22, 40, 0.38); /* sidebars, channel list */
+  --ars-surface-3: rgba(14, 16, 32, 0.46);   /* server list, title bar, popouts */
+  --ars-input: rgba(255, 255, 255, 0.10);
+  --ars-accent: #e0507a;
+  --ars-text: #ecebf5;
+  --ars-text-muted: #a9a8bd;
+}
+
+/* ========= BACKGROUND ========= */
+html {
+  background: #0a0a14 !important;
+}
+body {
+  background: transparent !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(var(--ars-bg-overlay), var(--ars-bg-overlay)), var(--ars-bg-image);
+  background-position: center, var(--ars-bg-position);
+  background-size: cover, var(--ars-bg-size);
+  background-repeat: no-repeat;
+  filter: blur(var(--ars-bg-blur));
+}
+
+/* Make Discord's root containers see-through */
+#app-mount,
+.appAsidePanelWrapper_a3002d,
+[class*="bg__"],
+[class*="app_"],
+[class*="appMount"] {
+  background: transparent !important;
+}
+
+/* ========= DISCORD VARIABLES ========= */
+.theme-dark,
+.theme-darker,
+.theme-light,
+.theme-midnight {
+  --background-primary: var(--ars-surface-1);
+  --background-secondary: var(--ars-surface-2);
+  --background-secondary-alt: var(--ars-surface-3);
+  --background-tertiary: var(--ars-surface-3);
+  --background-floating: rgba(8, 8, 18, 0.94);
+  --background-base-lowest: var(--ars-surface-3);
+  --background-base-lower: var(--ars-surface-2);
+  --background-base-low: var(--ars-surface-2);
+  --background-surface-high: var(--ars-surface-2);
+  --chat-background: transparent;
+  --channeltextarea-background: var(--ars-input);
+  --header-primary: var(--ars-text);
+  --text-normal: var(--ars-text);
+  --text-muted: var(--ars-text-muted);
+  --interactive-normal: var(--ars-text-muted);
+  --interactive-hover: var(--ars-text);
+  --text-default: var(--ars-text);
+  --text-strong: #fff;
+  --text-subtle: var(--ars-text-muted);
+  --header-secondary: var(--ars-text-muted);
+  --channels-default: var(--ars-text-muted);
+  --interactive-active: #fff;
+  --interactive-muted: #6d6c82;
+  --brand-experiment: var(--ars-accent);
+  --brand-500: var(--ars-accent);
+}
+
+/* Force readable text even if Discord uses variables not listed above */
+#app-mount,
+[class*="layer_"],
+[class*="bd-"],
+.bd-addon-card,
+.bd-addon-card * {
+  color: var(--ars-text);
+}
+[class*="timestamp"],
+[class*="bd-description"],
+.bd-description {
+  color: var(--ars-text-muted);
+}
+a { color: #8ab4ff; }
+
+/* ========= SURFACES ========= */
+[class*="sidebar_"],
+[class*="guilds_"],
+[class*="membersWrap_"],
+[class*="sidebarList"],
+[class*="privateChannels"],
+[class*="chat_"] {
+  backdrop-filter: blur(6px);
+}
+
+[class*="chat_"],
+[class*="content_"] > [class*="chatContent"] {
+  background: var(--ars-surface-1) !important;
+}
+
+[class*="sidebar_"],
+[class*="membersWrap_"],
+[class*="privateChannels"] {
+  background: var(--ars-surface-2) !important;
+}
+
+[class*="guilds_"],
+[class*="bar_"][class*="title"],
+[class*="titleBar"] {
+  background: var(--ars-surface-3) !important;
+}
+
+[class*="channelTextArea"] {
+  background: var(--ars-input) !important;
+}
+
+[class*="layer_"] [class*="container_"][class*="popout"],
+[class*="menu_"],
+[class*="popout_"],
+[class*="modal"] [class*="root_"] {
+  background-color: rgba(8, 8, 18, 0.94) !important;
+}
+
+/* Soft scrollbars */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+/* ========= RESPONSIVE ========= */
+/* Narrow windows: focus on the right side, where the character usually sits. */
+@media (max-width: 900px) {
+  :root {
+    --ars-bg-position: 65% center;
+  }
+}
+
+/* Portrait / tall windows */
+@media (max-aspect-ratio: 1/1) {
+  :root {
+    --ars-bg-position: 70% center;
+  }
+}
+
+/* Large screens: the source image is small (597x337); soften upscaling blur. */
+@media (min-width: 1921px) {
+  :root {
+    --ars-bg-blur: 2px;
+  }
+}
+
+/* ========= FORCE OVERRIDE (beats leftover/other themes) ========= */
+html body,
+html body .theme-dark,
+html body .theme-light,
+html body .theme-darker,
+html body .theme-midnight,
+html body [class*="theme-"] {
+  --bg-base-primary: var(--ars-surface-1) !important;
+  --bg-base-secondary: var(--ars-surface-2) !important;
+  --bg-base-tertiary: var(--ars-surface-3) !important;
+  --bg-surface-overlay: var(--ars-surface-2) !important;
+  --bg-surface-raised: var(--ars-surface-2) !important;
+  --background-primary: var(--ars-surface-1) !important;
+  --background-secondary: var(--ars-surface-2) !important;
+  --background-secondary-alt: var(--ars-surface-3) !important;
+  --background-tertiary: var(--ars-surface-3) !important;
+  --background-base-lowest: var(--ars-surface-3) !important;
+  --background-base-lower: var(--ars-surface-2) !important;
+  --background-base-low: var(--ars-surface-2) !important;
+  --background-surface-high: var(--ars-surface-2) !important;
+  --background-surface-higher: var(--ars-surface-2) !important;
+  --background-surface-highest: var(--ars-surface-2) !important;
+  --background-mod-subtle: rgba(255, 255, 255, 0.06) !important;
+  --background-mod-normal: rgba(255, 255, 255, 0.10) !important;
+  --background-mod-strong: rgba(255, 255, 255, 0.14) !important;
+  --background-modifier-hover: rgba(255, 255, 255, 0.08) !important;
+  --background-modifier-selected: rgba(255, 255, 255, 0.14) !important;
+  --chat-background-default: transparent !important;
+  --text-default: var(--ars-text) !important;
+  --text-normal: var(--ars-text) !important;
+  --text-primary: var(--ars-text) !important;
+  --text-secondary: var(--ars-text-muted) !important;
+  --text-muted: var(--ars-text-muted) !important;
+  --channels-default: var(--ars-text-muted) !important;
+  --header-primary: var(--ars-text) !important;
+  --header-secondary: var(--ars-text-muted) !important;
+  --interactive-normal: var(--ars-text-muted) !important;
+  --interactive-hover: #fff !important;
+  --interactive-active: #fff !important;
+}
+
+html body nav,
+html body [class*="sidebar"],
+html body [class*="Sidebar"],
+html body [class*="members"],
+html body [class*="Members"],
+html body [class*="privateChannels"],
+html body [class*="channels_"],
+html body [class*="container_"][class*="guild"],
+html body [class*="header_"],
+html body [class*="activityPanel"],
+html body [class*="panels_"] {
+  background-color: var(--ars-surface-2) !important;
+  background-image: none !important;
+  color: var(--ars-text) !important;
+}
+
+html body [class*="guilds_"],
+html body [class*="wrapper_"][class*="guilds"],
+html body [class*="titleBar"],
+html body [class*="bar_"] {
+  background-color: var(--ars-surface-3) !important;
+  background-image: none !important;
+}
+
+html body [class*="members"] *,
+html body [class*="sidebar"] *,
+html body [class*="channels_"] * {
+  color: var(--ars-text);
+}
+html body [class*="members"] [class*="activity"],
+html body [class*="members"] [class*="subText"] {
+  color: var(--ars-text-muted) !important;
+}
+
+/* Member list activity cards / hover rows */
+html body [class*="member_"],
+html body [class*="memberInner"] {
+  background: transparent !important;
+}
+html body [class*="member_"]:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ========= DISABLE DISCORD CLIENT GRADIENT THEME ========= */
+html body,
+html body [class*="theme-"] {
+  --custom-theme-background: none !important;
+  --custom-theme-base-color-amount: 0 !important;
+  --custom-app-panels-background: var(--ars-surface-3) !important;
+  --custom-channel-header-background: var(--ars-surface-2) !important;
+  --custom-guild-list-background: var(--ars-surface-3) !important;
+  --custom-guild-list-foreground: var(--ars-surface-3) !important;
+  --custom-guild-header-background: var(--ars-surface-2) !important;
+  --custom-chat-background: transparent !important;
+  --custom-member-list-background: var(--ars-surface-2) !important;
+  --custom-friends-background: var(--ars-surface-1) !important;
+  --custom-home-background: var(--ars-surface-1) !important;
+  --custom-gradient-start: transparent !important;
+  --custom-gradient-end: transparent !important;
+}
+html body .custom-theme-background,
+html body [class*="customTheme"],
+html body [class*="gradientTheme"] {
+  background: none !important;
+}
+html body [class*="sidebar"]::before,
+html body [class*="sidebar"]::after,
+html body [class*="members"]::before,
+html body [class*="members"]::after,
+html body [class*="guilds_"]::before,
+html body [class*="guilds_"]::after,
+html body [class*="container_"]::before {
+  background: none !important;
+}
+html body [class*="sidebar"],
+html body [class*="members"],
+html body [class*="friends"],
+html body [class*="peopleColumn"],
+html body [class*="nowPlayingColumn"],
+html body [class*="privateChannels"],
+html body [class*="scroller_"] {
+  background-color: var(--ars-surface-2) !important;
+  background-image: none !important;
+}
+
+/* ========= LIQUID GLASS ========= */
+:root {
+  --ars-glass-blur: 22px;
+  --ars-glass-saturate: 180%;
+  --ars-glass-border: rgba(255, 255, 255, 0.22);
+  --ars-glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.35),
+                         inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+                         inset 0 0 24px rgba(255, 255, 255, 0.05);
+  --ars-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --ars-radius: 18px;
+}
+
+html body [class*="sidebar_"],
+html body [class*="chat_"],
+html body [class*="membersWrap_"],
+html body [class*="guilds_"],
+html body [class*="privateChannels"],
+html body [class*="channelTextArea"],
+html body [class*="menu_"],
+html body [class*="popout_"],
+html body [class*="searchBar"],
+html body [class*="activityPanel"],
+html body [class*="panels_"] {
+  -webkit-backdrop-filter: blur(var(--ars-glass-blur)) saturate(var(--ars-glass-saturate)) !important;
+  backdrop-filter: blur(var(--ars-glass-blur)) saturate(var(--ars-glass-saturate)) !important;
+  border: 1px solid var(--ars-glass-border) !important;
+  box-shadow: var(--ars-glass-highlight), var(--ars-glass-shadow) !important;
+}
+
+html body [class*="sidebar_"],
+html body [class*="chat_"],
+html body [class*="membersWrap_"],
+html body [class*="guilds_"],
+html body [class*="privateChannels"] {
+  border-radius: var(--ars-radius) !important;
+}
+
+html body [class*="channelTextArea"],
+html body [class*="searchBar"],
+html body [class*="panels_"] {
+  border-radius: 999px !important;
+}
+
+html body [class*="menu_"],
+html body [class*="popout_"],
+html body [class*="modal"] [class*="root_"] {
+  background-color: rgba(24, 26, 46, 0.55) !important;
+  border-radius: var(--ars-radius) !important;
+}
+
+/* Glass-like hover/selected rows */
+html body [class*="modeSelected"],
+html body [class*="selected_"] {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+html body [class*="modeDefault"]:hover,
+html body [class*="member_"]:hover {
+  background: rgba(255, 255, 255, 0.10) !important;
+  border-radius: 12px !important;
+}
+
+/* Keep text crisp over the glass */
+html body [class*="chat_"],
+html body [class*="sidebar_"],
+html body [class*="membersWrap_"] {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+/* ========= SHOW BACKGROUND THROUGH THE WHOLE APP ========= */
+html body #app-mount,
+html body #app-mount > div,
+html body #app-mount > div > div,
+html body #app-mount > div > div > div,
+html body #app-mount > div > div > div > div,
+html body #app-mount > div > div > div > div > div {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Chat: nearly clear, flat, edge-to-edge like a wallpaper app */
+html body [class*="chat_"],
+html body [class*="chatContent"],
+html body [class*="content_"] > [class*="chat"] {
+  background: linear-gradient(rgba(8, 8, 20, 0.22), rgba(8, 8, 20, 0.34)) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Message rows and headers see-through */
+html body [class*="messagesWrapper"],
+html body [class*="scrollerInner"],
+html body [class*="message_"],
+html body [class*="title_"][class*="container"],
+html body [class*="toolbar"] {
+  background-color: transparent !important;
+}
+html body [class*="message_"]:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Side panels: lighter glass so the art shows */
+html body [class*="sidebar_"],
+html body [class*="membersWrap_"],
+html body [class*="guilds_"],
+html body [class*="privateChannels"] {
+  background-color: rgba(10, 10, 24, 0.40) !important;
+}
+
+/* ========= USER PANEL FIX (profile / mic / settings gear) ========= */
+html body [class*="panels_"],
+html body [class*="panels_"] > *,
+html body [class*="panels_"] [class*="container_"],
+html body [class*="panels_"] [class*="actionButtons"],
+html body [class*="panels_"] button {
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  text-shadow: none !important;
+}
+html body [class*="panels_"] {
+  border-radius: 14px !important;
+  background-color: rgba(10, 10, 24, 0.40) !important;
+}
+html body [class*="panels_"] button,
+html body [class*="panels_"] [class*="avatarWrapper"] {
+  border-radius: 8px !important;
+  background: transparent !important;
+}
+html body [class*="panels_"] button:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
