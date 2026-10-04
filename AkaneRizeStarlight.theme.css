@@ -459,6 +459,72 @@ html body [class*="sidebar_"] [class*="modeUnread"]::before {
   border-radius: 0 4px 4px 0 !important;
 }
 
+/* Do not tint or soften the actual call/screen-share video. */
+html body [class*="voiceCallWrapper"] video,
+html body [class*="callContainer"] video,
+html body [class*="tile_"] video,
+html body [class*="stream"] video,
+html body [class*="video"] video,
+html body [class*="voiceCallWrapper"] canvas,
+html body [class*="callContainer"] canvas,
+html body [class*="tile_"] canvas,
+html body [class*="stream"] canvas {
+  filter: none !important;
+  opacity: 1 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html body [class*="voiceCallWrapper"] [class*="tile_"],
+html body [class*="callContainer"] [class*="tile_"],
+html body [class*="stream"] [class*="tile_"] {
+  background: transparent !important;
+  background-image: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html body [class*="voiceCallWrapper"] [class*="avatar"] img,
+html body [class*="callContainer"] [class*="avatar"] img,
+html body [class*="tile_"] [class*="avatar"] img {
+  filter: brightness(1.22) saturate(1.18) !important;
+  opacity: 1 !important;
+}
+
+/* Remove theme glass/tint from the complete call stage, not only the video node. */
+html body [class*="voiceCallWrapper"],
+html body [class*="voiceCallWrapper"] *,
+html body [class*="callContainer"],
+html body [class*="callContainer"] *,
+html body [class*="streamContainer"],
+html body [class*="streamContainer"] * {
+  filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+html body [class*="voiceCallWrapper"] [class*="blur"],
+html body [class*="callContainer"] [class*="blur"],
+html body [class*="streamContainer"] [class*="blur"],
+html body [class*="voiceCallWrapper"] [class*="background"],
+html body [class*="callContainer"] [class*="background"],
+html body [class*="streamContainer"] [class*="background"] {
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html body [class*="voiceCallWrapper"] video,
+html body [class*="callContainer"] video,
+html body [class*="streamContainer"] video,
+html body [class*="voiceCallWrapper"] canvas,
+html body [class*="callContainer"] canvas,
+html body [class*="streamContainer"] canvas {
+  filter: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+
 /* Keep text crisp over the glass */
 html body [class*="chat_"],
 html body [class*="sidebar_"],
@@ -733,6 +799,47 @@ html body [class*="controls_"] button:hover {
   background-color: rgba(255, 255, 255, 0.28) !important;
 }
 
+/* Call controls need more contrast against the dark video background. */
+html body [class*="videoControls"],
+html body [class*="voiceCallWrapper"] [class*="controls_"],
+html body [class*="callContainer"] [class*="controls_"] {
+  background-color: rgba(94, 112, 174, 0.58) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22) !important;
+}
+
+html body [class*="videoControls"] button:not([class*="colorRed"]):not([class*="colorDanger"]),
+html body [class*="voiceCallWrapper"] [class*="controls_"] button:not([class*="colorRed"]):not([class*="colorDanger"]),
+html body [class*="callContainer"] [class*="controls_"] button:not([class*="colorRed"]):not([class*="colorDanger"]) {
+  background-color: rgba(220, 228, 255, 0.28) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+
+html body [class*="videoControls"] button:not([class*="colorRed"]):not([class*="colorDanger"]):hover,
+html body [class*="voiceCallWrapper"] [class*="controls_"] button:not([class*="colorRed"]):not([class*="colorDanger"]):hover,
+html body [class*="callContainer"] [class*="controls_"] button:not([class*="colorRed"]):not([class*="colorDanger"]):hover {
+  background-color: rgba(240, 243, 255, 0.42) !important;
+}
+
+html body [class*="videoControls"] svg,
+html body [class*="voiceCallWrapper"] [class*="controls_"] svg,
+html body [class*="callContainer"] [class*="controls_"] svg {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+/* Keep participant profile pictures bright in the call view. */
+html body [class*="voiceCallWrapper"] [class*="avatar"] img,
+html body [class*="callContainer"] [class*="avatar"] img,
+html body [class*="tile_"] [class*="avatar"] img,
+html body [class*="voiceCallWrapper"] [class*="avatar"] foreignObject,
+html body [class*="callContainer"] [class*="avatar"] foreignObject,
+html body [class*="tile_"] [class*="avatar"] foreignObject {
+  filter: brightness(1.22) saturate(1.18) !important;
+  opacity: 1 !important;
+}
+
 /* Popouts, menus and dropdowns a bit lighter */
 html body [class*="menu_"],
 html body [class*="popout_"],
@@ -918,4 +1025,139 @@ html body [class*="privateChannels"] [class*="channel_"]:hover svg,
 html body [class*="privateChannels"] [class*="interactive_"]:hover svg {
   color: #fff !important;
   opacity: 1 !important;
+}
+
+/* ========= HOLIDAY RIZE PALETTE ========= */
+:root {
+  --ars-bg-overlay: rgba(15, 7, 22, 0.12);
+  --ars-surface-1: rgba(28, 14, 30, 0.34);
+  --ars-surface-2: rgba(34, 17, 38, 0.46);
+  --ars-surface-3: rgba(18, 15, 34, 0.58);
+  --ars-input: rgba(24, 18, 34, 0.54);
+  --ars-accent: #e05259;
+  --ars-gold: #f5c779;
+  --ars-text: #fff3e9;
+  --ars-text-muted: #e0cbd2;
+  --ars-glass-border: rgba(255, 218, 190, 0.22);
+}
+
+html body,
+html body [class*="theme-"] {
+  --background-primary: var(--ars-surface-1) !important;
+  --background-secondary: var(--ars-surface-2) !important;
+  --background-secondary-alt: var(--ars-surface-3) !important;
+  --background-tertiary: var(--ars-surface-3) !important;
+  --background-floating: rgba(31, 16, 37, 0.96) !important;
+  --background-modifier-hover: rgba(255, 220, 200, 0.12) !important;
+  --background-modifier-selected: rgba(217, 91, 102, 0.30) !important;
+  --interactive-normal: #f3dfe0 !important;
+  --interactive-hover: #fff8f0 !important;
+  --channels-default: #e0cbd2 !important;
+  --brand-500: var(--ars-accent) !important;
+  --brand-experiment: var(--ars-accent) !important;
+}
+
+html body::before {
+  background-image:
+    linear-gradient(135deg, rgba(67, 13, 25, 0.18), rgba(13, 13, 34, 0.08) 52%, rgba(118, 48, 31, 0.16)),
+    var(--ars-bg-image) !important;
+  background-position: center, var(--ars-bg-position) !important;
+}
+
+html body [class*="sidebar_"],
+html body [class*="privateChannels"],
+html body [class*="membersWrap_"] {
+  background: linear-gradient(160deg, rgba(78, 28, 48, 0.48), rgba(26, 20, 47, 0.62)) !important;
+}
+
+html body [class*="guilds_"],
+html body [class*="titleBar"] {
+  background: linear-gradient(180deg, rgba(24, 19, 43, 0.72), rgba(49, 20, 38, 0.62)) !important;
+}
+
+html body [class*="chat_"] {
+  background: linear-gradient(145deg, rgba(42, 18, 36, 0.34), rgba(18, 17, 40, 0.48)) !important;
+}
+
+html body [class*="containerDefault"] [class*="modeSelected"],
+html body [class*="containerDefault"] [class*="modeUnread"] {
+  background: linear-gradient(100deg, rgba(225, 90, 103, 0.30), rgba(168, 89, 101, 0.24)) !important;
+  border-radius: 10px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 232, 214, 0.18) !important;
+}
+
+html body [class*="containerDefault"] [class*="modeDefault"]:hover,
+html body [class*="containerDefault"] [class*="modeUnread"]:hover {
+  background: linear-gradient(100deg, rgba(244, 177, 154, 0.28), rgba(206, 139, 158, 0.24)) !important;
+  border-radius: 10px !important;
+}
+
+html body [class*="menu_"],
+html body [class*="popout_"],
+html body [class*="autocomplete_"] {
+  background: linear-gradient(145deg, rgba(64, 29, 53, 0.96), rgba(27, 24, 49, 0.97)) !important;
+  border-color: rgba(255, 218, 190, 0.2) !important;
+}
+
+html body .mention,
+html body [class*="mention_"] {
+  background-color: rgba(224, 82, 89, 0.42) !important;
+  color: #fff5eb !important;
+}
+
+html body [class*="panels_"] {
+  background-image: linear-gradient(145deg, rgba(89, 38, 57, 0.52), rgba(29, 24, 49, 0.60)) !important;
+}
+
+/* ========= POLISHED LOWER VOICE PANEL ========= */
+html body [class*="panels_"] {
+  box-sizing: border-box !important;
+  margin: 0 6px 6px !important;
+  padding: 6px !important;
+  width: calc(100% - 12px) !important;
+  border: 1px solid rgba(255, 218, 190, 0.18) !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  background:
+    linear-gradient(155deg, rgba(97, 43, 61, 0.62), rgba(43, 31, 58, 0.72) 58%, rgba(30, 29, 58, 0.74)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 239, 225, 0.12),
+    0 6px 20px rgba(10, 8, 20, 0.24) !important;
+}
+
+html body [class*="panels_"] > *,
+html body [class*="panels_"] [class*="activityPanel"],
+html body [class*="panels_"] [class*="rtcConnectionStatus"],
+html body [class*="panels_"] [class*="actionButtons"],
+html body [class*="panels_"] [class*="container_"],
+html body [class*="panels_"] [class*="wrapper_"] {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body [class*="panels_"] > * + * {
+  margin-top: 2px !important;
+}
+
+html body [class*="panels_"] [class*="activityPanel"] {
+  padding: 4px 5px !important;
+}
+
+html body [class*="panels_"] [class*="rtcConnectionStatus"] {
+  padding: 3px 5px !important;
+}
+
+html body [class*="panels_"] [class*="actionButtons"] {
+  padding: 2px 4px !important;
+}
+
+html body [class*="panels_"] [class*="avatarWrapper"],
+html body [class*="panels_"] [class*="nameTag"] {
+  border-radius: 10px !important;
+  background: transparent !important;
 }
