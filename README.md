@@ -2,6 +2,8 @@
 
 A dependency-free [BetterDiscord](https://betterdiscord.app/) theme: a full-screen background image with dark, translucent Discord surfaces so text stays readable.
 
+**Current version: 2.0.0**
+
 > The theme loads its default background from `assets/background.png` in this repository (via raw.githubusercontent.com), so it works out of the box. You can swap in your own image, see below.
 
 ## Install
