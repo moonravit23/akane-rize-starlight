@@ -509,27 +509,21 @@ html body [class*="message_"]:hover [class*="cozyMessage"] {
   background-color: rgba(255, 255, 255, 0.04) !important;
 }
 
-/* ========= UNREAD INDICATORS (keep visible) ========= */
-html body [class*="unread_"],
-html body [class*="item_"] > [class*="unread"],
-html body [class*="pill"] > span,
-html body [class*="pill_"] > span {
+/* ========= UNREAD INDICATORS (narrow, keep visible) ========= */
+html body [class*="itemBadge"] [class*="item_"],
+html body [class*="wrapper_"] > [class*="item_"][class*="unread"] {
   background-color: #fff !important;
-  opacity: 1 !important;
 }
-html body [class*="newMessagesBar"],
-html body [class*="isUnread"] {
+html body [class*="numberBadge"] {
+  background-color: #ff4458 !important;
+  color: #fff !important;
+}
+html body [class*="newMessagesBar"] {
   background-color: transparent !important;
   color: #ff4458 !important;
   border-color: #ff4458 !important;
 }
-html body [class*="newMessagesBar"] [class*="span"],
 html body [class*="newMessagesBar"] span {
-  background-color: #ff4458 !important;
-  color: #fff !important;
-}
-html body [class*="numberBadge"],
-html body [class*="lowerBadge"] [class*="numberBadge"] {
   background-color: #ff4458 !important;
   color: #fff !important;
 }
