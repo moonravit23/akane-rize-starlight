@@ -41,12 +41,12 @@ body {
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: -16px;
   z-index: -1;
   pointer-events: none;
   background-image: linear-gradient(var(--ars-bg-overlay), var(--ars-bg-overlay)), var(--ars-bg-image);
   background-position: center, var(--ars-bg-position);
-  background-size: cover, var(--ars-bg-size);
+  background-size: cover, cover;
   background-repeat: no-repeat;
   filter: blur(var(--ars-bg-blur));
 }
@@ -307,7 +307,6 @@ html body [class*="privateChannels"],
 html body [class*="channelTextArea"],
 html body [class*="menu_"],
 html body [class*="popout_"],
-html body [class*="searchBar"],
 html body [class*="activityPanel"],
 html body [class*="panels_"] {
   -webkit-backdrop-filter: blur(var(--ars-glass-blur)) saturate(var(--ars-glass-saturate)) !important;
@@ -325,7 +324,6 @@ html body [class*="privateChannels"] {
 }
 
 html body [class*="channelTextArea"],
-html body [class*="searchBar"],
 html body [class*="panels_"] {
   border-radius: 999px !important;
 }
@@ -348,6 +346,73 @@ html body [class*="modeDefault"]:hover,
 html body [class*="member_"]:hover {
   background: rgba(255, 255, 255, 0.10) !important;
   border-radius: 12px !important;
+}
+
+html body [class*="sidebar_"] [class*="modeDefault"]:hover,
+html body [class*="sidebar_"] [class*="modeSelected"],
+html body [class*="sidebar_"] [class*="channel_"]:hover,
+html body [class*="sidebar_"] [class*="interactive_"]:hover {
+  background: rgba(200, 214, 255, 0.24) !important;
+  border-radius: 10px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+}
+
+html body [class*="sidebar_"] [class*="modeDefault"]:hover *,
+html body [class*="sidebar_"] [class*="channel_"]:hover *,
+html body [class*="sidebar_"] [class*="interactive_"]:hover * {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+/* Discord applies a dark hover layer on channel rows; override its state classes. */
+html body [class*="sidebar_"] [class*="mode_"]:hover,
+html body [class*="sidebar_"] [class*="modeDefault-"]:hover,
+html body [class*="sidebar_"] [class*="modeUnread-"]:hover,
+html body [class*="sidebar_"] [class*="containerDefault"]:hover,
+html body [class*="sidebar_"] [class*="channel"][class*="clickable"]:hover {
+  background: linear-gradient(100deg, rgba(255, 225, 238, 0.34), rgba(190, 205, 255, 0.28)) !important;
+  background-color: rgba(207, 190, 245, 0.34) !important;
+}
+
+html body [class*="sidebar_"] [class*="mode_"]:hover *,
+html body [class*="sidebar_"] [class*="modeDefault-"]:hover *,
+html body [class*="sidebar_"] [class*="modeUnread-"]:hover *,
+html body [class*="sidebar_"] [class*="containerDefault"]:hover *,
+html body [class*="sidebar_"] [class*="channel"][class*="clickable"]:hover * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 3px rgba(8, 12, 30, 0.75) !important;
+}
+
+html body [class*="sidebar_"] [class*="mode_"]:hover svg,
+html body [class*="sidebar_"] [class*="modeDefault-"]:hover svg,
+html body [class*="sidebar_"] [class*="modeUnread-"]:hover svg,
+html body [class*="sidebar_"] [class*="containerDefault"]:hover svg {
+  color: #fff !important;
+  fill: currentColor !important;
+  opacity: 1 !important;
+}
+
+/* Clean, consistent channel-row hover and selected finish */
+html body [class*="sidebar_"] [class*="containerDefault"] [class*="modeSelected"],
+html body [class*="sidebar_"] [class*="containerDefault"] [class*="modeDefault"]:hover,
+html body [class*="sidebar_"] [class*="containerDefault"] [class*="modeUnread-"]:hover {
+  min-height: 32px;
+  border-radius: 9px !important;
+  background: rgba(196, 180, 235, 0.24) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10) !important;
+  transition: background-color 140ms ease, box-shadow 140ms ease !important;
+}
+
+html body [class*="sidebar_"] [class*="containerDefault"] [class*="modeSelected"]::before {
+  display: none !important;
+}
+
+html body [class*="sidebar_"] [class*="containerDefault"] [class*="modeDefault"]:hover,
+html body [class*="sidebar_"] [class*="containerDefault"] [class*="modeUnread-"]:hover {
+  background: rgba(196, 180, 235, 0.18) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Keep text crisp over the glass */
@@ -485,6 +550,38 @@ html body [class*="mention_"] {
   padding: 0 2px;
 }
 
+/* Improve contrast for inline @everyone, role, and #channel mentions */
+html body [class*="messageContent"] .mention,
+html body [class*="messageContent"] [class*="mention_"],
+html body [class*="messageContent"] [class*="channelMention"],
+html body [class*="messageContent"] [class*="roleMention"],
+html body [class*="messageContent"] [class*="everyoneMention"] {
+  background-color: rgba(220, 55, 76, 0.58) !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 2px rgba(12, 8, 20, 0.75) !important;
+}
+
+html body [class*="messageContent"] .mention *,
+html body [class*="messageContent"] [class*="mention_"] *,
+html body [class*="messageContent"] [class*="channelMention"] *,
+html body [class*="messageContent"] [class*="roleMention"] *,
+html body [class*="messageContent"] [class*="everyoneMention"] * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  opacity: 1 !important;
+}
+
+html body [class*="messageContent"] .mention:hover,
+html body [class*="messageContent"] [class*="mention_"]:hover,
+html body [class*="messageContent"] [class*="channelMention"]:hover,
+html body [class*="messageContent"] [class*="roleMention"]:hover,
+html body [class*="messageContent"] [class*="everyoneMention"]:hover {
+  background-color: rgba(244, 73, 92, 0.82) !important;
+}
+
+
 /* ========= MESSAGE HEADER STRIPE FIX ========= */
 html body [class*="message_"] [class*="header_"],
 html body [class*="message_"] [class*="header"],
@@ -597,6 +694,39 @@ html body [class*="menu_"],
 html body [class*="popout_"],
 html body [class*="autocomplete_"] {
   background-color: rgba(44, 60, 120, 0.82) !important;
+}
+
+/* Search suggestions/results: keep the panel distinct from the wallpaper. */
+html body [class*="searchResults"],
+html body [class*="searchResult"],
+html body [class*="queryContainer"],
+html body [class*="resultsGroup"],
+html body [class*="searchOption"],
+html body [class*="option_"][class*="search"],
+html body [class*="searchPopout"] {
+  background: linear-gradient(145deg, rgba(27, 34, 68, 0.97), rgba(17, 23, 51, 0.97)) !important;
+  color: #f4f5ff !important;
+  -webkit-backdrop-filter: blur(10px) saturate(125%) !important;
+  backdrop-filter: blur(10px) saturate(125%) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38) !important;
+}
+
+html body [class*="searchResults"] *,
+html body [class*="searchResult"] *,
+html body [class*="queryContainer"] *,
+html body [class*="resultsGroup"] *,
+html body [class*="searchOption"] *,
+html body [class*="searchPopout"] * {
+  color: #f4f5ff !important;
+  text-shadow: none !important;
+}
+
+html body [class*="searchResults"] [class*="selected"],
+html body [class*="searchResults"] [class*="focused"],
+html body [class*="searchResult"]:hover,
+html body [class*="searchOption"]:hover {
+  background-color: rgba(190, 205, 255, 0.18) !important;
 }
 
 /* ========= SOFT BOTTOM FINISH ========= */
@@ -713,4 +843,35 @@ html body [class*="membersWrap_"] [class*="name_"] span {
 }
 html body [class*="membersWrap_"] [class*="member_"] {
   color: var(--ars-text);
+}
+
+/* ========= DM ROW HOVER CONTRAST ========= */
+html body [class*="privateChannels"] [class*="channel_"],
+html body [class*="privateChannels"] [class*="interactive_"] {
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+html body [class*="privateChannels"] [class*="channel_"]:hover,
+html body [class*="privateChannels"] [class*="interactive_"]:hover,
+html body [class*="privateChannels"] [class*="channel_"][class*="selected"],
+html body [class*="privateChannels"] [class*="interactiveSelected"] {
+  background: rgba(188, 204, 255, 0.24) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+}
+
+html body [class*="privateChannels"] [class*="channel_"]:hover *,
+html body [class*="privateChannels"] [class*="interactive_"]:hover *,
+html body [class*="privateChannels"] [class*="channel_"][class*="selected"] *,
+html body [class*="privateChannels"] [class*="interactiveSelected"] * {
+  color: #f8f8ff !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 3px rgba(8, 12, 30, 0.8) !important;
+}
+
+html body [class*="privateChannels"] [class*="channel_"]:hover svg,
+html body [class*="privateChannels"] [class*="interactive_"]:hover svg {
+  color: #fff !important;
+  opacity: 1 !important;
 }
